@@ -1,0 +1,295 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Paleta de colores (Francia) */
+:root {
+  --blue-france: #0055A4;
+  --white-france: #FFFFFF;
+  --red-france: #EF4135;
+  --text-color: #333;
+  --bg-light: #f9f9f9;
+  --transition-speed: 0.3s;
+}
+
+/* Fuentes y cuerpo */
+body {
+  font-family: 'Lato', sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Contenedor */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+header {
+  background: var(--white-france);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+header .logo img {
+  height: 50px;
+}
+header nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+header nav ul li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 700;
+  transition: color var(--transition-speed);
+}
+header nav ul li a:hover {
+  color: var(--blue-france);
+}
+
+/* Hero (Inicio) */
+.hero {
+  background: url('hero-bg.jpg') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding-top: 80px; /* Para compensar header fijo */
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  pointer-events: none; /* Permite que los clics pasen a los elementos inferiores */
+}
+.hero-content {
+  position: relative;
+  z-index: 1; /* Asegura que el contenido esté por encima del overlay */
+  color: var(--white-france);
+  max-width: 800px;
+}
+.hero-content h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+.hero .btn {
+  background: var(--red-france);
+  color: var(--white-france);
+  padding: 0.8rem 2rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background var(--transition-speed);
+}
+.hero .btn:hover {
+  background: #b93028; /* Tonalidad más oscura de rojo */
+}
+
+/* Secciones generales */
+.section {
+  padding: 80px 0;
+  text-align: center;
+}
+.section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--blue-france);
+}
+.section p {
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  font-size: 1.1rem;
+}
+
+/* Sección Ventajas */
+.advantages-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.advantage-item {
+  background: var(--bg-light);
+  padding: 2rem;
+  border-radius: 8px;
+  width: 270px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.advantage-item h3 {
+  color: var(--blue-france);
+  margin-bottom: 1rem;
+}
+.advantage-item p {
+  font-size: 1rem;
+}
+
+/* Sección Proceso */
+.process-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.step {
+  background: var(--bg-light);
+  padding: 2rem;
+  border-radius: 8px;
+  width: 270px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.step h3 {
+  color: var(--blue-france);
+  margin-bottom: 0.5rem;
+}
+.step p {
+  font-size: 1rem;
+}
+
+/* Sección FAQ */
+.faq .faq-item {
+  text-align: left;
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.faq .faq-item h3 {
+  color: var(--blue-france);
+  margin-bottom: 0.5rem;
+}
+
+/* Sección Ofertas/Servicios */
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.service-item {
+  background: var(--bg-light);
+  padding: 2rem;
+  border-radius: 8px;
+  width: 270px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.service-item h3 {
+  margin-bottom: 1rem;
+  color: var(--blue-france);
+}
+.service-item p {
+  font-size: 1rem;
+}
+
+/* Sección Contacto */
+.contact form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.contact input,
+.contact textarea {
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+}
+.contact button {
+  background: var(--blue-france);
+  color: var(--white-france);
+  border: none;
+  padding: 0.8rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+.contact button:hover {
+  background: #003b7b; /* Tonalidad más oscura de azul */
+}
+
+/* Pie de página */
+footer {
+  background: var(--blue-france);
+  color: var(--white-france);
+  text-align: center;
+  padding: 1.5rem 0;
+}
+footer p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+footer a {
+  color: var(--white-france);
+  text-decoration: underline;
+}
+footer a:hover {
+  text-decoration: none;
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 768px) {
+  header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  header nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hero {
+    height: auto;
+    padding: 120px 0 40px 0; /* Ajustar espacio en móviles */
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .advantages-grid,
+  .process-steps,
+  .services-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .advantage-item,
+  .step,
+  .service-item {
+    width: 100%;
+    max-width: 350px;
+  }
+  .faq .faq-item {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
