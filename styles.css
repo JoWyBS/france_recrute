@@ -1,3 +1,8 @@
+/* Agrega scroll-padding para que al navegar se tenga en cuenta el header fijo */
+html {
+  scroll-padding-top: 80px;
+}
+
 /* Reset básico */
 * {
   margin: 0;
@@ -5,44 +10,45 @@
   box-sizing: border-box;
 }
 
-/* Paleta de colores (Francia) */
+/* Paleta de colores inspirada en la bandera de Francia */
 :root {
   --blue-france: #0055A4;
   --white-france: #FFFFFF;
-  --red-france: #EF4135;
-  --text-color: #333;
+  --red-france: #EC1920;
+  --red-dark: #B32018;
   --bg-light: #f9f9f9;
   --transition-speed: 0.3s;
+  --light-red: #ffe6e6;
 }
 
 /* Fuentes y cuerpo */
 body {
   font-family: 'Lato', sans-serif;
-  color: var(--text-color);
+  color: #333;
   line-height: 1.6;
 }
 
-/* Contenedor */
+/* Contenedor general */
 .container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Header */
-header {
-  background: var(--white-france);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 100;
-}
-header .container {
+/* HEADER */
+.header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 0;
+}
+header {
+  background: var(--white-france);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
 }
 header .logo img {
   height: 50px;
@@ -55,15 +61,27 @@ header nav ul {
 }
 header nav ul li a {
   text-decoration: none;
-  color: var(--text-color);
+  color: #333;
   font-weight: 700;
   transition: color var(--transition-speed);
+  position: relative;
+  padding-bottom: 5px;
 }
-header nav ul li a:hover {
-  color: var(--blue-france);
+header nav ul li a:hover,
+header nav ul li a.active {
+  color: var(--red-france);
+}
+header nav ul li a.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--red-france);
 }
 
-/* Hero (Inicio) */
+/* HERO SIN OVERLAY */
 .hero {
   background: url('hero-bg.jpg') no-repeat center center/cover;
   height: 100vh;
@@ -72,21 +90,11 @@ header nav ul li a:hover {
   justify-content: center;
   text-align: center;
   position: relative;
-  padding-top: 80px; /* Para compensar header fijo */
-}
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  pointer-events: none; /* Permite que los clics pasen a los elementos inferiores */
+  padding-top: 80px; /* Compensa header fijo */
 }
 .hero-content {
   position: relative;
-  z-index: 1; /* Asegura que el contenido esté por encima del overlay */
+  z-index: 1;
   color: var(--white-france);
   max-width: 800px;
 }
@@ -108,10 +116,10 @@ header nav ul li a:hover {
   transition: background var(--transition-speed);
 }
 .hero .btn:hover {
-  background: #b93028; /* Tonalidad más oscura de rojo */
+  background: var(--red-dark);
 }
 
-/* Secciones generales */
+/* SECCIONES GENERALES */
 .section {
   padding: 80px 0;
   text-align: center;
@@ -128,7 +136,15 @@ header nav ul li a:hover {
   font-size: 1.1rem;
 }
 
-/* Sección Ventajas */
+/* SOBRE NOSOTROS */
+.about {
+  background: var(--white-france);
+}
+
+/* VENTAJAS */
+.advantages {
+  background: var(--bg-light);
+}
 .advantages-grid {
   display: flex;
   flex-wrap: wrap;
@@ -137,21 +153,24 @@ header nav ul li a:hover {
   margin-top: 2rem;
 }
 .advantage-item {
-  background: var(--bg-light);
+  background: var(--white-france);
   padding: 2rem;
   border-radius: 8px;
   width: 270px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 .advantage-item h3 {
-  color: var(--blue-france);
+  color: var(--red-france);
   margin-bottom: 1rem;
 }
 .advantage-item p {
   font-size: 1rem;
 }
 
-/* Sección Proceso */
+/* PROCESO DE RECLUTAMIENTO */
+.process {
+  background: var(--white-france);
+}
 .process-steps {
   display: flex;
   flex-wrap: wrap;
@@ -160,13 +179,27 @@ header nav ul li a:hover {
   margin-top: 2rem;
 }
 .step {
-  background: var(--bg-light);
+  background: var(--light-red);
   padding: 2rem;
   border-radius: 8px;
   width: 270px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: relative;
+}
+.step-circle {
+  background: var(--red-france);
+  color: var(--white-france);
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  font-weight: bold;
+  position: absolute;
+  top: -20px;
+  left: calc(50% - 20px);
 }
 .step h3 {
+  margin-top: 30px;
   color: var(--blue-france);
   margin-bottom: 0.5rem;
 }
@@ -174,20 +207,30 @@ header nav ul li a:hover {
   font-size: 1rem;
 }
 
-/* Sección FAQ */
+/* FAQ */
+.faq {
+  background: var(--bg-light);
+}
 .faq .faq-item {
   text-align: left;
   margin-bottom: 1.5rem;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  padding: 1rem;
+  background: var(--white-france);
+  border-left: 5px solid var(--red-france);
+  border-radius: 4px;
 }
 .faq .faq-item h3 {
   color: var(--blue-france);
   margin-bottom: 0.5rem;
 }
 
-/* Sección Ofertas/Servicios */
+/* OFERTAS/SERVICIOS */
+.services {
+  background: var(--white-france);
+}
 .services-grid {
   display: flex;
   flex-wrap: wrap;
@@ -200,17 +243,20 @@ header nav ul li a:hover {
   padding: 2rem;
   border-radius: 8px;
   width: 270px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 .service-item h3 {
   margin-bottom: 1rem;
-  color: var(--blue-france);
+  color: var(--red-france);
 }
 .service-item p {
   font-size: 1rem;
 }
 
-/* Sección Contacto */
+/* CONTACTO */
+.contact {
+  background: var(--bg-light);
+}
 .contact form {
   max-width: 600px;
   margin: 0 auto;
@@ -227,7 +273,7 @@ header nav ul li a:hover {
   width: 100%;
 }
 .contact button {
-  background: var(--blue-france);
+  background: var(--red-france);
   color: var(--white-france);
   border: none;
   padding: 0.8rem;
@@ -237,41 +283,58 @@ header nav ul li a:hover {
   transition: background var(--transition-speed);
 }
 .contact button:hover {
-  background: #003b7b; /* Tonalidad más oscura de azul */
+  background: var(--red-dark);
 }
 
-/* Pie de página */
+/* FOOTER simplificado */
 footer {
   background: var(--blue-france);
   color: var(--white-france);
   text-align: center;
-  padding: 1.5rem 0;
+  padding: 2rem 0;
 }
-footer p {
-  margin: 0.5rem 0;
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer-contact h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+.footer-contact p {
   font-size: 0.9rem;
+  margin: 0.3rem 0;
 }
-footer a {
+.footer-contact a {
   color: var(--white-france);
+  text-decoration: none;
+  font-weight: bold;
+}
+.footer-contact a:hover {
   text-decoration: underline;
 }
-footer a:hover {
-  text-decoration: none;
+.footer-bottom {
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.8rem;
+  background: var(--blue-france);
 }
 
-/* Responsividad para pantallas más pequeñas */
+/* RESPONSIVIDAD */
 @media (max-width: 768px) {
-  header .container {
+  .header-container {
     flex-direction: column;
     align-items: flex-start;
   }
   header nav ul {
     flex-direction: column;
     gap: 10px;
+    margin-top: 1rem;
   }
   .hero {
     height: auto;
-    padding: 120px 0 40px 0; /* Ajustar espacio en móviles */
+    padding: 120px 0 40px 0;
   }
   .hero-content h1 {
     font-size: 2rem;
@@ -288,8 +351,8 @@ footer a:hover {
     width: 100%;
     max-width: 350px;
   }
-  .faq .faq-item {
-    margin-left: 0;
-    margin-right: 0;
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
   }
 }
