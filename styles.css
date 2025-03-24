@@ -50,8 +50,17 @@ header {
   top: 0;
   z-index: 100;
 }
+/* HEADER - Logo más grande */
 header .logo img {
-  height: 50px;
+  height: 60px; /* Aumentado de 50px a 70px */
+  width: auto; /* Mantiene proporciones */
+  transition: all 0.3s ease; /* Suaviza cambios de tamaño */
+}
+
+@media (max-width: 768px) {
+  header .logo img {
+    height: 60px; /* Un poco más pequeño en móviles */
+  }
 }
 header nav ul {
   list-style: none;
@@ -286,6 +295,19 @@ header nav ul li a.active::after {
   background: var(--red-dark);
 }
 
+/* Estilo para el mensaje de respuesta */
+#formResponse {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  display: none;
+}
+
+#formResponse p {
+  margin: 0;
+  font-weight: bold;
+}
+
 /* FOOTER simplificado */
 footer {
   background: var(--blue-france);
@@ -357,37 +379,42 @@ footer {
   }
 }
 
-/* Estilos mejorados para el menú hamburguesa */
+/* Menú Hamburguesa Mejorado */
 .menu-toggle {
-  display: none; /* Oculto en escritorio */
-  font-size: 1.5rem;
+  display: none;
+  font-size: 1.8rem;
   background: none;
   border: none;
   cursor: pointer;
-  color: #333;
-  padding: 10px;
+  color: var(--blue-france);
   position: absolute;
   right: 20px;
-  top: 20px;
-  z-index: 101; /* Asegura que esté por encima del menú */
+  top: 25px;
+  z-index: 101;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+  color: var(--red-france);
 }
 
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block; /* Mostrar botón hamburguesa en móvil */
+    display: block;
   }
 
   .header-container {
+    padding: 15px 0;
     position: relative;
-    padding: 1rem;
   }
 
   nav {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
-    max-width: 300px;
+    width: 75%;
+    max-width: 280px;
     height: 100vh;
     background: var(--white-france);
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
@@ -403,34 +430,45 @@ footer {
   .nav-links {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    height: calc(100% - 80px);
-    overflow-y: auto;
+    gap: 0;
+    padding: 0;
   }
 
   .nav-links li {
     text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin: 0;
   }
 
   .nav-links li a {
     display: block;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: var(--blue-france);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  /* Overlay para el fondo cuando el menú está abierto */
+  .nav-links li a:hover,
+  .nav-links li a.active {
+    background: var(--light-red);
+    color: var(--red-france);
+    padding-left: 22px;
+  }
+
   .nav-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 99;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
+    transition: all 0.4s ease;
   }
 
   .nav-overlay.active {
